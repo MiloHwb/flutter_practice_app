@@ -3,6 +3,7 @@ import 'package:flutter_practice_app/page_widgets.dart';
 
 import 'layout_widgets.dart';
 import 'tab_bar_with_page_view/tab_bar_bottom_page.dart';
+import 'tab_bar_with_page_view/tab_bar_top_page.dart';
 
 void main() {
 //  runApp(LayoutWidget());
@@ -16,38 +17,41 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home:MainPage() ,
-      );
+      home: MainPage(),
+    );
   }
 }
+
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter Demo'),
-        ),
+      ),
       body: Column(
         children: <Widget>[
           FlatButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                  TabBarBottomPageWidget()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => TabBarTopPageWidget()));
             },
             color: Colors.blue,
             child: Text('Top Tab'),
-            ),
+          ),
           FlatButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => TabBarBottomPageWidget()));
+            },
             color: Colors.blue,
-            child: Text('Top Tab'),
-            ),
+            child: Text('Bottom Tab'),
+          ),
         ],
-        ),
-      );
+      ),
+    );
   }
 }
-
 
 class LayoutWidget extends StatelessWidget {
   // This widget is the root of your application.
@@ -57,7 +61,7 @@ class LayoutWidget extends StatelessWidget {
       title: 'LayoutWidget Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        ),
+      ),
       home: Scaffold(
         appBar: AppBar(),
 //        body: DemoWidget(),
@@ -66,8 +70,8 @@ class LayoutWidget extends StatelessWidget {
 //        body: ColumnDemo(),
 //        body: ExpandedDemo(),
         body: ExpandedDemo2(),
-        ),
-      );
+      ),
+    );
   }
 }
 
@@ -78,6 +82,6 @@ class PageWidget extends StatelessWidget {
       title: 'PageWidget Demo',
       theme: ThemeData(primarySwatch: Colors.cyan),
       home: DemoPage(),
-      );
+    );
   }
 }
